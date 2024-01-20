@@ -4,12 +4,14 @@ const Controllers = {
   allGames(req, res) {
     GamesModel.findAll().then(games => {
       res.json({
-        statusCode: 200,
         body: games,
       })
     })
       .catch(err => {
-        console.error('Error ocorreu:', err)
+        res.status(400);
+        res.json({
+          Error: 'Não foi possível acessar a lista de games.'
+        })
       })
   },
 
