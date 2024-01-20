@@ -4,12 +4,14 @@ const Controllers = {
   allGames(req, res) {
     GamesModel.findAll().then(games => {
       res.json({
+        statusCode: 200,
         body: games,
       })
     })
       .catch(err => {
         res.status(400);
         res.json({
+          statusCode: 400,
           Error: 'Não foi possível acessar a lista de games.'
         })
       })
@@ -77,17 +79,19 @@ const Controllers = {
         .then(() => {
           res.json({
             statusCode: 200,
+            body: 'Jogo criado.'
           })
         })
         .catch(err => {
           res.json({
             statusCode: 500,
-            body: undefined,
+            body: 'Problemas com servidor.',
           })
         })
     } else {
       res.json({
-        statusCode: 400
+        statusCode: 400,
+        body: 'Requisição incorreta.'
       })
     }
   },
