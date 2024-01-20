@@ -6,7 +6,7 @@ API desenvolvida no curso de NodeJS do Victor Lima na Udemy. A aplicação possu
 
 Em todos os casos, a rota retorna um objeto com o statusCode da requisição e um body, podendo conter os dados da requisição ou undefined.
 
-### GET /games
+### GET -> /games
 
 Retorna a listagem de todos os games cadastrados.
 
@@ -57,7 +57,7 @@ Nenhum
     }
   ```
 
-### GET /game/:id
+### GET -> /game/:id
 
 Retorna o game com mesmo id do parâmetro informado na URL.
 
@@ -100,9 +100,9 @@ Nenhum
   }
   ```
 
-### POST /game/:id
+### POST -> /game
 
-  Recebe um objeto json com as propriedades do jogo: __title__, __year__, __price__, __describe__.
+  Deve enviar um objeto json com as propriedades do jogo: __title__, __year__, __price__, __describe__.
 
 #### Parâmetros
   Deve ser enviado um objeto com os seguintes parâmetros e tipos:
@@ -117,11 +117,12 @@ Nenhum
 
 #### Respostas
 
-1. Ok! status: 20;
+1. Ok! status: 200;
   Retorna um json:
   ```
     {
     statusCode: 200,
+    body: 'Jogo Criado'
     }
   ```
 
@@ -130,7 +131,7 @@ Nenhum
   ```
     {
       statusCode: 500,
-      body: 'Problemas com servidor.',
+      body: 'Problemas com servidor',
     }
   ```
 
@@ -140,5 +141,95 @@ Nenhum
     {
       statusCode: 400,
       body: 'Requisição incorreta.'
+    }
+  ```
+
+
+### PUT -> /game/:id
+
+  Deve enviar um objeto json com as propriedades do jogo: __id__,__title__, __year__, __price__, __describe__.
+
+#### Parâmetros
+  Deve ser enviado um objeto com os seguintes parâmetros e tipos:
+  ```
+    {
+      id: number
+      title: string,
+      price: number,
+      year: number,
+      describe: string,
+    }
+  ```
+
+#### Respostas
+
+1. Ok! status: 200;
+  Retorna um json:
+  ```
+    {
+      statusCode: 200,
+      body: 'Jogo Atualizado'
+    }
+  ```
+
+2. Id Inválido! status: 400;
+  Retorna um json:
+  ```
+    {
+      statusCode: 400,
+      body: 'Id Inválido'
+    }
+  ```
+
+3. Requisição Incorreta! status: 400.
+  Retorna um json:
+  ```
+    {
+      statusCode: 400,
+      body: 'Requisição incorreta'
+    }
+  ```
+
+4. Problemas com Servidor! status: 500;
+  Retorna um json:
+  ```
+    {
+      statusCode: 500,
+      body: 'Problemas com servidor',
+    }
+  ```
+
+### DELETE -> /game/:id
+
+  Deve enviar o id do jogo que será deletado, na URL da requisição.
+
+#### Parâmetros
+ 
+  Id do jogo na URL da requisição.
+
+#### Respostas
+
+1. Ok! status: 200;
+  Retorna um json:
+  ```
+    {
+      statusCode: 200,
+      body: 'Jogo Deletado'
+    }
+  ```
+2. Id Inválido! status: 400;
+  Retorna um json:
+  ```
+    {
+      statusCode: 400,
+      body: 'Id Inválido'
+    }
+  ```
+3. Problemas com Servidor! status: 500;
+  Retorna um json:
+  ```
+    {
+      statusCode: 500,
+      body: 'Problemas com servidor',
     }
   ```

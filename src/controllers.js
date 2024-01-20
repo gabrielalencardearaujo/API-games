@@ -102,7 +102,7 @@ const Controllers = {
     if (isNaN(id)) {
       res.json({
         statusCode: 400,
-        body: undefined,
+        body: 'Id Incorreto',
       })
     } else {
 
@@ -112,11 +112,13 @@ const Controllers = {
         .then((game) => {
           res.json({
             statusCode: 200,
+            body: 'Jogo Deletado'
           })
         })
         .catch(err => {
           res.json({
-            statusCode: 500
+            statusCode: 500,
+            body: 'Problemas com servidor.',
           })
         })
     }
@@ -128,7 +130,7 @@ const Controllers = {
     if (isNaN(id)) {
       res.json({
         statusCode: 400,
-        msg: 'erro no id'
+        body: 'Id Inválido'
       })
     } else if (
       typeof title != 'string' ||
@@ -138,6 +140,7 @@ const Controllers = {
     ) {
       res.json({
         statusCode: 400,
+        body: 'Requisição incorreta'
       })
 
     } else {
@@ -157,14 +160,16 @@ const Controllers = {
               where: {id}
             }).then(() => {
               res.json({
-                statusCode: 200
+                statusCode: 200,
+                body: 'Jogo Atualizado'
               })
             })
           }
         })
         .catch(err => {
           res.json({
-            statusCode: 500
+            statusCode: 500,
+            body: 'Problemas com servidor.'
           })
         })
     }
